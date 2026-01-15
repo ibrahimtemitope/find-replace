@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find And Replace</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .draft {
+            min-height: 200px;
+            max-width: 500px;
+            max-height: 400px;
+            margin: 10px 0 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid;
+            box-shadow: 0 0 5px;
+        }
+
+        .section {
+            margin: 10px;
+        }
+
+        .section > input {
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid;
+            box-shadow: 0 0 3px;
+        }
+
+        button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            background-color: black;
+        }
+
+        .run:hover {
+            background-color: green;
+        }
+
+        .logs:hover {
+            background-color: red;
+        }
+
+        h1:hover {
+            animation-name: title;
+            animation-duration: 5s;
+            animation-iteration-count: 1;
+            cursor: pointer;
+        }
+
+        span:hover {
+            animation: rainbow 3s linear forwards;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-size: 300% 100%;
+            background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red);
+        }
+
+        @keyframes rainbow {
+            from {
+                background-position: 0% 50%;
+                -webkit-background-clip: text;
+            }
+
+            to {
+                background-position: 100% 50%;
+                -webkit-background-clip: text;
+            }
+        }
+
+        .container {
+            background-color: pink;
+            border: 2px solid red;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+            margin: 10px;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1><span>F</span><span>I</span><span>N</span><span>D</span> <span>&</span> <span>R</span><span>E</span><span>P</span><span>L</span><span>A</span><span>C</span><span>E</span></h1>
+        <textarea name="" id="draft" class="draft"></textarea>
+        <div class="section">
+            <input type="text" class="find">
+            <input type="text" class="replace">
+        </div>
+    </div>
+    <div class="sctions">
+        <button class="run">Run</button>
+        <button class="logs">Clear Logs</button>
+    </div>
+        <div class="container"></div>
+
+
+    <script>
+        const draft = document.querySelector('.draft');
+        const findstring = document.querySelector('.find');
+        const replace = document.querySelector('.replace');
+        const run = document.querySelector('.run');
+        const container = document.querySelector('.container')
+        const logs = document.querySelector('.logs')
+
+        run.addEventListener('click', function(){
+            if (draft.value.includes(findstring.value)){
+                draft.value = draft.value.replaceAll(findstring.value, replace.value)
+            } else {
+                let div = document.createElement('div')
+                container.appendChild(div)
+                div.innerHTML = `Could not find ${findstring.value}`
+            }
+        });
+
+        logs.addEventListener('click', function(){
+            container.innerHTML = ''
+        })
+    </script>
+</body>
+</html>
