@@ -15,7 +15,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             flex-direction: column;
         }
 
@@ -29,7 +29,7 @@
             min-height: 200px;
             max-width: 500px;
             max-height: 400px;
-            margin: 10px 0 10px 0;
+            margin: 10px;
             padding: 10px;
             border-radius: 10px;
             border: 2px solid;
@@ -45,6 +45,7 @@
             border-radius: 10px;
             border: 2px solid;
             box-shadow: 0 0 3px;
+            margin: 10px;
         }
 
         button {
@@ -97,7 +98,7 @@
             border: 2px solid red;
             padding: 10px;
             border-radius: 10px;
-            width: 100%;
+            width: 200px;
             margin: 10px;
             color: red;
             text-align: center;
@@ -107,10 +108,10 @@
 <body>
     <div class="box">
         <h1><span>F</span><span>I</span><span>N</span><span>D</span> <span>&</span> <span>R</span><span>E</span><span>P</span><span>L</span><span>A</span><span>C</span><span>E</span></h1>
-        <textarea name="" id="draft" class="draft"></textarea>
+        <textarea name="" id="draft" class="draft" placeholder="Content Here .................."></textarea>
         <div class="section">
-            <input type="text" class="find">
-            <input type="text" class="replace">
+            <input type="text" class="find" placeholder="Find....">
+            <input type="text" class="replace" placeholder="Replace.....">
         </div>
     </div>
     <div class="sctions">
