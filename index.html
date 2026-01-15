@@ -13,10 +13,20 @@
 
         body {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             min-height: 100vh;
-            flex-direction: column;
+            text-align: center;
+        }
+
+        ::-webkit-scrollbar {
+            background-color: green;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: red;
+            border-radius: 10px;
         }
 
         .box {
@@ -48,6 +58,10 @@
             margin: 10px;
         }
 
+        .sections > button{
+            margin: 5px;
+        }
+
         button {
             border: none;
             padding: 10px 20px;
@@ -68,7 +82,7 @@
         h1:hover {
             animation-name: title;
             animation-duration: 5s;
-            animation-iteration-count: 1;
+            animation-iteration-count: infinite;
             cursor: pointer;
         }
 
@@ -102,23 +116,40 @@
             margin: 10px;
             color: red;
             text-align: center;
+            max-height: 200px;
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+
+        @media screen and (max-width: 900px){
+            body {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1><span>F</span><span>I</span><span>N</span><span>D</span> <span>&</span> <span>R</span><span>E</span><span>P</span><span>L</span><span>A</span><span>C</span><span>E</span></h1>
-        <textarea name="" id="draft" class="draft" placeholder="Content Here .................."></textarea>
-        <div class="section">
-            <input type="text" class="find" placeholder="Find....">
-            <input type="text" class="replace" placeholder="Replace.....">
+    <div class="head">
+        <div class="box">
+                <h1><span>F</span><span>I</span><span>N</span><span>D</span> <span>&</span> <span>R</span><span>E</span><span>P</span><span>L</span><span>A</span><span>C</span><span>E</span></h1>
+                <textarea name="" id="draft" class="draft" placeholder="Content Here .................."></textarea>
+            <div class="section">
+                <input type="text" class="find" placeholder="Find....">
+                <input type="text" class="replace" placeholder="Replace.....">
+            </div>
+        </div>
+        <div class="sections">
+            <button class="run">Run</button>
+            <button class="logs">Clear Logs</button>
+            <button class="content-cl">Clear</button>
+            <button class="clear-find">CLear Find</button>
+            <button class="clear-replace">Clear Replace</button>
         </div>
     </div>
-    <div class="sctions">
-        <button class="run">Run</button>
-        <button class="logs">Clear Logs</button>
-    </div>
+    <div class="toe">
+        <h1>Logs</h1>
         <div class="container"></div>
+    </div>
 
 
     <script>
@@ -126,8 +157,12 @@
         const findstring = document.querySelector('.find');
         const replace = document.querySelector('.replace');
         const run = document.querySelector('.run');
-        const container = document.querySelector('.container')
-        const logs = document.querySelector('.logs')
+        const container = document.querySelector('.container');
+        const logs = document.querySelector('.logs');
+        const content_cl =  document.querySelector('.content-cl');
+        const clear_find = document.querySelector('.clear-find');
+        const clear_replace = document.querySelector('.clear-replace');
+
 
         run.addEventListener('click', function(){
             if (draft.value.includes(findstring.value)){
@@ -137,6 +172,18 @@
                 container.appendChild(div)
                 div.innerHTML = `Could not find ${findstring.value}`
             }
+        });
+
+        content_cl.addEventListener('click', function(){
+            draft.value = ''
+        });
+
+        clear_find.addEventListener('click', function(){
+            findstring.value = ''
+        });
+
+        clear_replace.addEventListener('click', function(){
+            replace.value = ''
         });
 
         logs.addEventListener('click', function(){
